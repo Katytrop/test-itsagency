@@ -1,3 +1,0 @@
-npm comands:
-
-rimraf node_modules
