@@ -200,7 +200,7 @@ body {
 }
 
 .header {
-  z-index: 11;
+  z-index: 15;
 }
 
 .header__body {
@@ -873,7 +873,7 @@ body {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  z-index: 5;
+  z-index: 11;
 }
 
 .catalog-header .sort-dropdown__button {
