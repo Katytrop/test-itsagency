@@ -1,0 +1,362 @@
+.header {
+	z-index: 11;
+	&__body {
+		min-height: toRem(104);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: toRem(20);
+		@media (max-width: $md2+px)  {
+			border-bottom: 1px solid rgba($color: #1f2020, $alpha: 0.06);
+			min-height: toRem(64);
+		}
+	}
+	&__left {
+		display: flex;
+		align-items: center;
+		@include adaptiv-value('gap', 172, 0, 1);
+		@media (max-width: $md2+px)  {
+			display: contents;
+		}
+	}
+	&__right {
+		display: flex;
+		align-items: center;
+		@include adaptiv-value('gap', 116, 0, 1);
+		@media (max-width: $md2+px)  {
+			order: 3;
+		}
+	}
+	&__phone-wrap {
+		white-space: nowrap;
+		@media (max-width: $md2+px)  {
+			display: none;
+		}
+	}
+	&__phone {
+		font-weight: 500;
+		letter-spacing: -0.02em;
+	}
+	&__phone-label {
+		font-size: 14px;
+		opacity: 0.3;
+		margin-top: toRem(2);
+	}
+
+	&__logo {
+		flex: 0 0 toRem(131);
+		@media (max-width: $md2+px)  {
+			order: 2;
+			flex: 0 0 toRem(99);
+		}
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+.menu {
+	display: flex;
+	&__body {
+		@media (max-width: $md2+px)  {
+			&.menu-open {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: toRem(300);
+				height: 100dvh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #fff;
+				transition: 0.5s all ease;
+				.menu__list {
+					display: flex;
+					flex-direction: column;
+					gap: toRem(40);
+				}
+			}
+		}
+	}
+	&__list {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		column-gap: toRem(24);
+		row-gap: toRem(10);
+		@media (max-width: $md2+px)  {
+			display: none;
+		}
+	}
+
+	&__link {
+		font-size: 14px;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		transition: all 0.3s;
+		&:hover {
+			//text-decoration: underline; нет ховеров на макете???
+		}
+	}
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+	gap: toRem(24);
+	&__item {
+		cursor: pointer;
+		&--search, &--profile, &--favorite {
+			@media (max-width: $md2+px)  {
+				display: none;
+			}
+		}
+	}
+	&__icon {
+		width: toRem(22);
+		height: toRem(22);
+		&--cart {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 100%;
+			background-color: $green;
+			font-weight: 500;
+			font-size: 12px;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+		}
+	}
+}
+
+//burger
+.icon-menu {
+	display: none;
+	@media ( max-width: $md2+px ) {
+		position: relative;
+		display: block;
+		flex: 0 0 toRem(24);
+		height: toRem(15);
+		cursor: pointer;
+		z-index: 5;
+		background-color: transparent;
+		span, &::before, &::after {
+			content: "";
+			transition: all 0.3s ease 0s;
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background-color: $mainColorText;
+		}
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		span {
+			top: calc(50% - 1px);
+		}
+		&.menu-open {
+			span {
+				width: 0;
+			}
+			&::before {
+				transform: rotate(-45deg);
+				top: calc( 50% - 1px );
+			}
+			&::after {
+				transform: rotate(45deg);
+				bottom: calc( 50% - 1px );
+			}
+		}
+	}
+}
+
+.cart-modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: toRem(600);
+	height: 100%;
+	display: none;
+	pointer-events: none;
+	z-index: 20;
+	@media (max-width: $md3+px)  {
+		width: 100%;
+	}
+	&.active {
+		display: block;
+		pointer-events: auto;
+	}
+	&__panel {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+		padding: toRem(40);
+		@media (max-width: $md3+px)  {
+			padding: toRem(20);
+		}
+	}
+	&__title {
+		font-weight: 500;
+		font-size: 30px;
+		line-height: 88%;
+		letter-spacing: -0.04em;
+		margin-bottom: toRem(94);
+	}
+	&__close {
+		position: absolute;
+		top: toRem(32);
+		right: toRem(40);
+		width: toRem(48);
+		height: toRem(48);
+		border-radius: 100%;
+		border: 1px solid $mainColorText;
+		background: none;
+		@media (max-width: $md3+px)  {
+			top: toRem(20);
+			right: toRem(20);
+		}
+	}
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: toRem(12);
+	}
+	&__clear {
+		background: none;
+		font-weight: 300;
+		font-size: 14px;
+		line-height: 112%;
+		opacity: 0.4;
+	}
+	&__items {
+		flex: 1 1 auto;
+		overflow-y: auto;
+		margin-bottom: 20px;
+		padding-right: toRem(5);
+		&::-webkit-scrollbar {
+			width: 5px; 
+		}
+		&::-webkit-scrollbar-track {
+			background: #f1f1f1;
+			border-radius: 4px; 
+		}
+		&::-webkit-scrollbar-thumb {
+			background: #888; 
+			border-radius: 4px;
+		}
+		&::-webkit-scrollbar-thumb:hover {
+			background: #555; 
+		}
+	}
+	&__footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		@media (max-width: $md3+px)  {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: toRem(20);
+		}
+	}
+	&__sum {
+		margin-top: toRem(6);
+		font-weight: 500;
+		font-size: 30px;
+		letter-spacing: -0.02em;
+	}
+	&__order {
+		width: toRem(240);
+		height: toRem(56);
+		padding: 10px 20px;
+		background:$green;
+		border-radius: 4px;
+		font-weight: 500;
+		font-size: 12px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		text-align: center;
+		cursor: pointer;
+		@media (max-width: $md3+px)  {
+			width: 100%;
+		}
+	}
+
+}
+
+.cart-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 1px solid rgba($color: #000000, $alpha: 0.1);
+	padding-top: toRem(12);
+	gap: toRem(10);
+	&:not(:last-child) {
+		margin-bottom: toRem(14);
+	}
+	&__content {
+		display: flex;
+		align-items: center;
+		max-width: toRem(296);
+		gap: toRem(10);
+		@media (max-width: $md3+px)  {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+	&__image {
+		flex: 0 0 toRem(96);
+		height: toRem(96);
+	}
+	&__name {
+		font-weight: 300;
+		line-height: 112%;
+		letter-spacing: 0.02em;
+		margin-bottom: toRem(16);
+	}
+	&__price {
+		font-weight: 600;
+	}
+	
+}
+.actions-cart {
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	&__quantity {
+		display: flex;
+		align-items: center;
+		@include adaptiv-value('margin-right', 37, 10, 1);
+		
+		span {
+			padding: 0 toRem(17);
+		}
+	}
+	&__minus, &__plus {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 4px;
+		width: toRem(40);
+		height: toRem(24);
+		background: #f2f2f2;
+		font-weight: 500;
+		font-size: 20px;
+	}
+	&__delete {
+		background: none;
+		img {
+			width: toRem(24);
+			height: toRem(24);
+		}
+		
+	}
+}
